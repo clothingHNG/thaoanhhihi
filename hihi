@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test A/B Tiêu Đề</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      text-align: center;
+    }
+    #headline {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    /* Thêm một số kiểu để dễ nhìn hơn */
+  </style>
+</head>
+<body>
+  <h1 id="headline">Đang tải tiêu đề...</h1>
+  <p>Nội dung trang của bạn ở đây.</p>
+
+  <script>
+    // Phân chia ngẫu nhiên người dùng vào nhóm A hoặc B
+    if (!localStorage.getItem('abTestGroup')) {
+      const group = Math.random() < 0.5 ? 'A' : 'B';
+      localStorage.setItem('abTestGroup', group);
+    }
+
+    const group = localStorage.getItem('abTestGroup');
+
+    // Thay đổi tiêu đề dựa trên nhóm
+    const headlineElement = document.getElementById('headline');
+    if (group === 'A') {
+      headlineElement.textContent = 'Chào mừng bạn đến với trang của chúng tôi!';
+    } else {
+      headlineElement.textContent = 'Khám phá dịch vụ của chúng tôi ngay hôm nay!';
+    }
+  </script>
+</body>
+</html>
